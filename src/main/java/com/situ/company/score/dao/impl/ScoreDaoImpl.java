@@ -66,15 +66,12 @@ public class ScoreDaoImpl implements IScoreDao {
     @Override
     public ScoreModel selectModel(ScoreModel model) {
         StringBuffer sql = new StringBuffer("select id,");
-        sql.append(clos).append(" from ")
-                .append(table).append(" where code_emp = ? and code_pro = ? ");
+        sql.append(clos).append(" from ").append(table).append(" where code_emp = ? and code_pro = ? ");
         List<Object>values= Arrays.asList(model.getCodeEmp(),model.getCodePro());
         Map<String, String> fields=new HashMap<>();
         fields.put("id","id");
         fields.put("codeEmp","code_emp");
-//        fields.put("empName","empName");
         fields.put("codePro","code_pro");
-//        fields.put("proName","proName");
         fields.put("score","score");
         return JDBCUtil.queryModel(sql.toString(), values, ScoreModel.class,fields);
     }
